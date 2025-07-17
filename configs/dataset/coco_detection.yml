@@ -1,0 +1,48 @@
+task: detection
+
+num_classes: 5
+remap_mscoco_category: False
+
+train_dataloader: 
+  type: DataLoader
+  dataset: 
+    type: CocoDetection
+    img_folder: E:/Learning/Data/HIT-UAV/VisDrone2019-DET-train/images/
+    ann_file: E:/Learning/Data/HIT-UAV/VisDrone2019-DET-train/train.json
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  batch_size: 8
+  num_workers: 4
+  drop_last: True 
+
+# val_dataloader:
+#   type: DataLoader
+#   dataset: 
+#     type: CocoDetection
+#     img_folder: E:/Learning/Data/VisDrone/VisDrone2019-DET-val/images/
+#     ann_file: E:/Learning/Data/VisDrone/VisDrone2019-DET-val/val.json
+#     transforms:
+#       type: Compose
+#       ops: ~ 
+
+#   shuffle: False
+#   batch_size: 8
+#   num_workers: 4
+#   drop_last: False
+
+val_dataloader:
+  type: DataLoader
+  dataset: 
+    type: CocoDetection
+    img_folder: E:/Learning/Data/HIT-UAV/VisDrone2019-DET-val/images/
+    ann_file: E:/Learning/Data/HIT-UAV/VisDrone2019-DET-val/val.json
+    transforms:
+      type: Compose
+      ops: ~ 
+
+  shuffle: False
+  batch_size: 8
+  num_workers: 4
+  drop_last: False
