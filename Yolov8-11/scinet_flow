@@ -1,0 +1,23 @@
+// SCINet Flow
+digraph {
+	input [label="输入图像"]
+	in_conv [label="in_conv
+(Conv2d + ReLU)"]
+	blocks [label="blocks循环
+(3次：Conv2d + BN + ReLU，残差连接)"]
+	out_conv [label="out_conv
+(Conv2d + Sigmoid)"]
+	input_mean [label="计算input_mean"]
+	alpha [label="确定alpha值"]
+	illu [label="illu = alpha * fea + input"]
+	clamp [label="torch.clamp(illu, 0.0, 1.0)"]
+	output [label="输出结果"]
+	input -> in_conv
+	in_conv -> blocks
+	blocks -> out_conv
+	out_conv -> input_mean
+	input_mean -> alpha
+	alpha -> illu
+	illu -> clamp
+	clamp -> output
+}
